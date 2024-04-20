@@ -1,0 +1,14 @@
+{
+  "type": "lc:transform",
+  "ingredient": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:redstone"
+    }
+  ],
+  "result": {
+    "item": "lc:electro_iron_ingot"
+  }
+}
