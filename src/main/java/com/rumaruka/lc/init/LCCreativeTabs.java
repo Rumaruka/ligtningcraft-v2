@@ -19,6 +19,8 @@ public class LCCreativeTabs {
             .title(Component.translatable("itemGroup.lc"))
             .displayItems((p_270258_, p_259752_) ->  {
               p_259752_.accept(LCItems.ELECTRO_IRON_INGOT.get());
+              p_259752_.accept(LCItems.LIGHTNING_WAND.get());
+              p_259752_.accept(LCItems.ELECTRO_PICKAXE_ITEM.get());
 
             }).build()
     );

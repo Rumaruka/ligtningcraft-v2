@@ -7,45 +7,67 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public abstract class AbstractCustomRecipe implements Recipe<Container> {
     protected final RecipeType<?> type;
 
     protected final String group;
-    protected final Ingredient ingredient;
+    public final NonNullList<Ingredient> ingredients;
+
     protected final ItemStack result;
 
 
-    public AbstractCustomRecipe(RecipeType<?> p_250197_, String p_249518_, Ingredient p_251354_, ItemStack p_252185_) {
+    public AbstractCustomRecipe(RecipeType<?> p_250197_, String p_249518_, NonNullList<Ingredient> p_251354_, ItemStack p_252185_) {
         this.type = p_250197_;
 
         this.group = p_249518_;
-        this.ingredient = p_251354_;
+
+        this.ingredients = p_251354_;
         this.result = p_252185_;
 
     }
 
-    public boolean matches(Container p_43748_, Level p_43749_) {
+    public boolean matches(Container inv, Level p_43749_) {
 
-        return this.ingredient.test(p_43748_.getItem(0));
+        List<Ingredient> stacks = new ArrayList<>(getIngredients());
+        for (int i = 1; i < inv.getContainerSize(); i++) {
+            ItemStack stack = inv.getItem(i);
+            if (!stack.isEmpty()) {
+                boolean flag = false;
+                Iterator<Ingredient> itr = stacks.iterator();
+                while (itr.hasNext()) {
+                    Ingredient ingredient = itr.next();
+                    if (ingredient.test(stack)) {
+                        flag = true;
+                        itr.remove();
+                        break;
+                    }
+                }
+                if (!flag) {
+                    return false;
+                }
+            }
+        }
+        return stacks.isEmpty();
+
     }
+
+    public NonNullList<Ingredient> getIngredients() {
+        return this.ingredients;
+    }
+
 
     public ItemStack assemble(Container p_43746_, RegistryAccess p_267063_) {
 
 
         return this.result.copy();
     }
-    public boolean isValid (ItemStack input) {
 
-        return this.ingredient.test(input);
-    }
     public boolean canCraftInDimensions(int p_43743_, int p_43744_) {
         return true;
-    }
-
-    public NonNullList<Ingredient> getIngredients() {
-        NonNullList<Ingredient> nonnulllist = NonNullList.create();
-        nonnulllist.add(this.ingredient);
-        return nonnulllist;
     }
 
 
@@ -62,4 +84,8 @@ public abstract class AbstractCustomRecipe implements Recipe<Container> {
         return this.type;
     }
 
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
 }

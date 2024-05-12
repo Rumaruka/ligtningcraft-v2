@@ -1,5 +1,6 @@
 package com.rumaruka.lc.init;
 
+
 import com.rumaruka.lc.common.recipes.TransformRecipe;
 import com.rumaruka.lc.common.recipes.TransformRecipeSerializer;
 import net.minecraft.core.registries.BuiltInRegistries;

@@ -2,6 +2,7 @@ package com.rumaruka.lc.common.recipes;
 
 import com.rumaruka.lc.init.LCRecipes;
 
+import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -24,11 +25,14 @@ public class TransformRecipe extends AbstractCustomRecipe{
 
 
 
-    public TransformRecipe(String p_249312_, Ingredient p_252345_, ItemStack p_250002_) {
-        super(RECIPE_TYPE, p_249312_,  p_252345_, p_250002_);
-     }
+
     // Initialized by reload listener
     public static Map<ResourceLocation, TransformRecipe> recipeList = Collections.emptyMap();
+
+    public TransformRecipe(String p_249518_, NonNullList<Ingredient> p_251354_, ItemStack p_252185_) {
+        super(RECIPE_TYPE, p_249518_, p_251354_, p_252185_);
+    }
+
     @Override
     public ItemStack getToastSymbol() {
         return new ItemStack(Items.DIAMOND);
@@ -38,4 +42,7 @@ public class TransformRecipe extends AbstractCustomRecipe{
     public RecipeSerializer<?> getSerializer() {
         return LCRecipes.TRANSFORM.get();
     }
+
+
+
 }
