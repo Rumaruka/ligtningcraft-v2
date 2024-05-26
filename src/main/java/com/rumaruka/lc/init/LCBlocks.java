@@ -1,5 +1,6 @@
 package com.rumaruka.lc.init;
 
+import com.rumaruka.lc.common.blocks.InfuserBlock;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -21,5 +22,5 @@ public class LCBlocks {
     }
 
 
-   // public static final DeferredBlock<CoalGrinderBlock> COAL_GRINDER = BLOCKS.register("coal_grinder", ()->new CoalGrinderBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(3.5f, 2.5f).lightLevel(SGBlocks.litBlockEmission(13)).noCollission()));
+    public static final DeferredBlock<InfuserBlock> INFUSER = BLOCKS.register("infuser", ()->new InfuserBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(3.5f, 2.5f)));
 }

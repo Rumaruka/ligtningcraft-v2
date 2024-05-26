@@ -1,13 +1,8 @@
 package com.rumaruka.lc.init;
 
-import com.rumaruka.lc.common.entity.LightningBoltLC;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.monster.breeze.Breeze;
-import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -23,10 +18,10 @@ public class LCEntity {
 
     }
 
-  public static final DeferredHolder<EntityType<?>, EntityType<LightningBoltLC>> LIGHTNING_BOLT_LC = ENTITYS.register("lightning_bolt", ()-> EntityType.Builder.<LightningBoltLC>of(LightningBoltLC::new, MobCategory.MISC).noSave()
-          .sized(0.0F, 0.0F)
-          .clientTrackingRange(16)
-          .updateInterval(Integer.MAX_VALUE).build(null));
+//  public static final DeferredHolder<EntityType<?>, EntityType<LightningBoltLC>> LIGHTNING_BOLT_LC = ENTITYS.register("lightning_bolt", ()-> EntityType.Builder.<LightningBoltLC>of(LightningBoltLC::new, MobCategory.MISC).noSave()
+//          .sized(0.0F, 0.0F)
+//          .clientTrackingRange(16)
+//          .updateInterval(Integer.MAX_VALUE).build(null));
 
 
 }

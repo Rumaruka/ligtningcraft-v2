@@ -1,5 +1,6 @@
 package com.rumaruka.lc.init;
 
+import com.rumaruka.lc.common.tiles.machines.InfuserBE;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -17,7 +18,7 @@ public class LCTiles {
 
     }
 
-    //public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CoalGrinderBE>> COAL_GRINDER_BE = TILES.register("coal_grinder", () -> BlockEntityType.Builder.of(CoalGrinderBE::new, SGBlocks.COAL_GRINDER.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InfuserBE>> INFUSER_BE = TILES.register("infuser", () -> BlockEntityType.Builder.of(InfuserBE::new, LCBlocks.INFUSER.get()).build(null));
 
 
 }

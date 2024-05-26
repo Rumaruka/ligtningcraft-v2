@@ -1,4 +1,4 @@
-package com.rumaruka.lc.common.recipes;
+package com.rumaruka.lc.api.recipe;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -14,10 +14,10 @@ import java.util.List;
 public abstract class AbstractCustomRecipe implements Recipe<Container> {
     protected final RecipeType<?> type;
 
-    protected final String group;
+    public final String group;
     public final NonNullList<Ingredient> ingredients;
 
-    protected final ItemStack result;
+    public final ItemStack result;
 
 
     public AbstractCustomRecipe(RecipeType<?> p_250197_, String p_249518_, NonNullList<Ingredient> p_251354_, ItemStack p_252185_) {
@@ -73,6 +73,10 @@ public abstract class AbstractCustomRecipe implements Recipe<Container> {
 
     public ItemStack getResultItem(RegistryAccess p_266851_) {
         return this.result;
+    }
+
+    public ItemStack getResult() {
+        return result;
     }
 
     public String getGroup() {

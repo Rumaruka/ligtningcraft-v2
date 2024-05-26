@@ -1,24 +1,18 @@
 package com.rumaruka.lc.common.events;
 
 import com.google.common.collect.Lists;
-import com.rumaruka.lc.common.recipes.TransformRecipe;
+import com.rumaruka.lc.common.recipes.transform.TransformRecipe;
 import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.EntityStruckByLightningEvent;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import java.util.List;
 import java.util.Set;
@@ -32,28 +26,24 @@ public class LightningTransformEvent {
         Level level = entity.level();
 
 
+        if (!level.isClientSide() && entity instanceof ItemEntity item) {
 
-        if (!level.isClientSide && entity instanceof ItemEntity item ) {
-
-            transform( item);
+            transform(item);
 
         }
 
 
     }
 
-    public static void transform(ItemEntity entity) {
+    private static void transform(ItemEntity entity) {
         var level = entity.level();
-        if (!level.isClientSide) {
-            var region = new AABB(entity.getX() - 1, entity.getY() - 1, entity.getZ() - 1, entity.getX() + 1,
-                    entity.getY() + 1, entity.getZ() + 1);
-            List<ItemEntity> itemEntities = level.getEntities(null, region).stream()
-                    .filter(e -> e instanceof ItemEntity && !e.isRemoved()).map(e -> (ItemEntity) e).toList();
+        if (!level.isClientSide()) {
+            var region = new AABB(entity.getX() - 1, entity.getY() - 1, entity.getZ() - 1, entity.getX() + 1, entity.getY() + 1, entity.getZ() + 1);
+            List<ItemEntity> itemEntities = level.getEntities(null, region).stream().filter(e -> e instanceof ItemEntity && !e.isRemoved()).map(e -> (ItemEntity) e).toList();
 
             for (var holder : level.getRecipeManager().getAllRecipesFor(TransformRecipe.RECIPE_TYPE)) {
-                TransformRecipe recipe = holder.value();
-                if (recipe.getIngredients().isEmpty())
-                    continue;
+                var recipe = holder.value();
+                if (recipe.getIngredients().isEmpty()) continue;
 
                 List<Ingredient> missingIngredients = Lists.newArrayList(recipe.getIngredients());
                 Set<ItemEntity> selectedEntities = new ReferenceOpenHashSet<>(missingIngredients.size());

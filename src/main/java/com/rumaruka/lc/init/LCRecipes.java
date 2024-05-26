@@ -1,8 +1,12 @@
 package com.rumaruka.lc.init;
 
 
-import com.rumaruka.lc.common.recipes.TransformRecipe;
-import com.rumaruka.lc.common.recipes.TransformRecipeSerializer;
+import com.rumaruka.lc.common.recipes.crusher.CrusherRecipe;
+import com.rumaruka.lc.common.recipes.crusher.CrusherRecipeSerializer;
+import com.rumaruka.lc.common.recipes.infuser.InfuserRecipe;
+import com.rumaruka.lc.common.recipes.infuser.InfuserRecipeSerializer;
+import com.rumaruka.lc.common.recipes.transform.TransformRecipe;
+import com.rumaruka.lc.common.recipes.transform.TransformRecipeSerializer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.bus.api.IEventBus;
@@ -21,5 +25,7 @@ public class LCRecipes {
     }
 
    public static final DeferredHolder<RecipeSerializer<?>, TransformRecipeSerializer<TransformRecipe>> TRANSFORM = RECIPE_SERIALIZER.register("transform", () -> new TransformRecipeSerializer<>(TransformRecipe::new));
+   public static final DeferredHolder<RecipeSerializer<?>, CrusherRecipeSerializer<CrusherRecipe>> CRUSHER = RECIPE_SERIALIZER.register("crusher", () -> new CrusherRecipeSerializer<>(CrusherRecipe::new,100));
+   public static final DeferredHolder<RecipeSerializer<?>, InfuserRecipeSerializer<InfuserRecipe>> INFUSHER = RECIPE_SERIALIZER.register("infuser", () -> new InfuserRecipeSerializer<>(InfuserRecipe::new));
 
 }

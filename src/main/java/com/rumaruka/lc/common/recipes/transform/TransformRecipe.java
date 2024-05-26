@@ -1,5 +1,6 @@
-package com.rumaruka.lc.common.recipes;
+package com.rumaruka.lc.common.recipes.transform;
 
+import com.rumaruka.lc.api.recipe.AbstractCustomRecipe;
 import com.rumaruka.lc.init.LCRecipes;
 
 import net.minecraft.core.NonNullList;
@@ -13,7 +14,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import java.util.Collections;
 import java.util.Map;
 
-public class TransformRecipe extends AbstractCustomRecipe{
+public class TransformRecipe extends AbstractCustomRecipe {
 
     public static final RecipeType<TransformRecipe> RECIPE_TYPE = new RecipeType<TransformRecipe>() {
         @Override
@@ -33,10 +34,7 @@ public class TransformRecipe extends AbstractCustomRecipe{
         super(RECIPE_TYPE, p_249518_, p_251354_, p_252185_);
     }
 
-    @Override
-    public ItemStack getToastSymbol() {
-        return new ItemStack(Items.DIAMOND);
-    }
+
 
     @Override
     public RecipeSerializer<?> getSerializer() {
